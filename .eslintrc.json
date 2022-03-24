@@ -48,7 +48,7 @@
     "jam3/forbid-methods": 2,
     "no-console": "off",
     "jsx-a11y/anchor-is-valid": [
-      "error",
+      "off",
       {
         "components": ["Link"],
         "specialLink": ["hrefLeft", "hrefRight"],
@@ -98,7 +98,7 @@
       "files": ["src/util/**/*.js"],
       "rules": {
         "require-jsdoc": [
-          "error",
+          "off",
           {
             "require": {
               "FunctionDeclaration": true,
