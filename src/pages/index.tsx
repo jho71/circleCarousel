@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import styles from './index.module.scss';
 
 import Head from '@/components/Head/Head';
+import Timeline from '@/components/Timeline/Timeline';
 
 type Props = {
   className: string;
@@ -58,6 +59,7 @@ function Home({ className }: Props) {
           </li>
         </ul>
       </section>
+      <Timeline />
     </main>
   );
 }

@@ -1,0 +1,67 @@
+@import 'shared';
+
+.Timeline {
+  position: relative;
+  height: 288px;
+  width: 288px;
+  margin: auto;
+  .next,
+  .prev {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  svg {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin-left: auto;
+    margin-right: auto;
+    .timelineLoader {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  #circle {
+    position: relative;
+    left: 0;
+  }
+  .currentYearPoint {
+    width: px(12);
+    height: px(12);
+  }
+  .timelineDot {
+    width: px(6);
+    height: px(6);
+    cursor: pointer;
+  }
+  .timelineYear {
+    height: 14px;
+    width: 30px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 14px;
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+
+  .timelineMap {
+    padding-top: 1.6px;
+    width: 319px;
+    height: 319px;
+    position: relative;
+  }
+  .yearText {
+    width: 350px;
+    height: 350px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: visible;
+  }
+}
