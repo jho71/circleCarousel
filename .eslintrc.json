@@ -21,9 +21,9 @@
   },
   "rules": {
     "import/order": "off",
-    "simple-import-sort/exports": "warn",
+    "simple-import-sort/exports": "off",
     "simple-import-sort/imports": [
-      "warn",
+      "off",
       {
         "groups": [
           ["^react", "^next", "^@jam3", "^@?\\w", "^\\u0000"], // our stack & ext library & side effect
@@ -37,7 +37,7 @@
         ]
       }
     ],
-    "prettier/prettier": "warn",
+    "prettier/prettier": "off",
     "import/no-anonymous-default-export": "off",
     "jam3/no-sanitizer-with-danger": [
       2,
@@ -91,7 +91,7 @@
       }
     ],
     "@next/next/no-img-element": "off",
-    "@typescript-eslint/no-explicit-any": ["error"]
+    "@typescript-eslint/no-explicit-any": ["off"]
   },
   "overrides": [
     {
