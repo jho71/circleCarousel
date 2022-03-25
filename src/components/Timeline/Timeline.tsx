@@ -1,20 +1,23 @@
 import { useEffect, useState } from 'react';
 import { useRef } from 'react';
 import classnames from 'classnames';
+import Image from '../Image/Image';
 import { gsap } from 'gsap';
 import DrawSVGPlugin from 'gsap/dist/DrawSVGPlugin';
 import MorphSVGPlugin from 'gsap/dist/MorphSVGPlugin';
 import MotionPathPlugin from 'gsap/dist/MotionPathPlugin';
-import { Controller, Navigation, Pagination, Swiper as SwiperClass } from 'swiper';
+import { EffectFade, Controller, Navigation, Pagination, Swiper as SwiperClass } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import 'swiper/css';
+import 'swiper/css/effect-fade';
 import 'swiper/css/pagination';
 
 import styles from './Timeline.module.scss';
 
 import SVGCurrentYearDot from '../../assets/images/currentYearDot.svg';
-//import SVGArrow from '../../assets/images/rightArrow.svg';
+import SVGArrowLeft from '../../assets/images/left.svg';
+import SVGArrowRight from '../../assets/images/right.svg';
+
 import SVGTimeDot from '../../assets/images/timeDot.svg';
 import SVGtimeMap from '../../assets/images/timeMap.svg';
 
@@ -567,129 +570,176 @@ function Timeline() {
   }
   return (
     <div className={classnames(styles.Timeline)}>
-      <div ref={SVGRef}>
-        <SVGTimeDot id="point0" className={classnames(styles.timelineDot)} />
-        <SVGTimeDot id="point1" className={classnames(styles.timelineDot)} />
-        <SVGTimeDot id="point2" className={classnames(styles.timelineDot)} />
-        <SVGTimeDot id="point3" className={classnames(styles.timelineDot)} />
-        <SVGTimeDot id="point4" className={classnames(styles.timelineDot)} />
-        <SVGTimeDot id="point5" className={classnames(styles.timelineDot)} />
-        <SVGTimeDot id="point6" className={classnames(styles.timelineDot)} />
-        <SVGTimeDot id="point7" className={classnames(styles.timelineDot)} />
-        <SVGTimeDot id="point8" className={classnames(styles.timelineDot)} />
-        <SVGTimeDot id="point9" className={classnames(styles.timelineDot)} />
-        <SVGTimeDot id="point10" className={classnames(styles.timelineDot)} />
-        <SVGTimeDot id="point11" className={classnames(styles.timelineDot)} />
-        <SVGTimeDot id="point12" className={classnames(styles.timelineDot)} />
-        <SVGTimeDot id="point13" className={classnames(styles.timelineDot)} />
+      <div className={classnames(styles.timelineWrapper)}>
+        <div ref={SVGRef}>
+          <SVGTimeDot id="point0" className={classnames(styles.timelineDot)} />
+          <SVGTimeDot id="point1" className={classnames(styles.timelineDot)} />
+          <SVGTimeDot id="point2" className={classnames(styles.timelineDot)} />
+          <SVGTimeDot id="point3" className={classnames(styles.timelineDot)} />
+          <SVGTimeDot id="point4" className={classnames(styles.timelineDot)} />
+          <SVGTimeDot id="point5" className={classnames(styles.timelineDot)} />
+          <SVGTimeDot id="point6" className={classnames(styles.timelineDot)} />
+          <SVGTimeDot id="point7" className={classnames(styles.timelineDot)} />
+          <SVGTimeDot id="point8" className={classnames(styles.timelineDot)} />
+          <SVGTimeDot id="point9" className={classnames(styles.timelineDot)} />
+          <SVGTimeDot id="point10" className={classnames(styles.timelineDot)} />
+          <SVGTimeDot id="point11" className={classnames(styles.timelineDot)} />
+          <SVGTimeDot id="point12" className={classnames(styles.timelineDot)} />
+          <SVGTimeDot id="point13" className={classnames(styles.timelineDot)} />
+        </div>
+
+        <div className={classnames(styles.carouselWrapper)}>
+          <svg width="289" height="288" viewBox="0 0 350 350">
+            <circle
+              ref={circleRef}
+              id="circle"
+              className={classnames(styles.timelineLoader)}
+              cx="175"
+              cy="175"
+              r="170"
+              stroke="#302F30"
+              fill="none"
+              strokeWidth="1"
+            />
+          </svg>
+          <svg viewBox="0 0 340 340">
+            <circle
+              id="yearCircle"
+              className={classnames(styles.timelineLoader)}
+              cx="170"
+              cy="170"
+              r="190"
+              stroke="#302F30"
+              fill="none"
+              strokeWidth=" 1.19432"
+            />
+          </svg>
+          <SVGtimeMap />
+        </div>
+
+        <SVGCurrentYearDot id="currentYearPoint" className={classnames(styles.currentYearPoint)} />
+
+        <div ref={yearRef}>
+          <div id="year1970" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
+            1970
+          </div>
+          <div id="year1974" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
+            1974
+          </div>
+          <div id="year1978" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
+            1978
+          </div>
+          <div id="year1982" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
+            1982
+          </div>
+          <div id="year1986" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
+            1986
+          </div>
+          <div id="year1990" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
+            1990
+          </div>
+          <div id="year1994" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
+            1994
+          </div>
+          <div id="year1998" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
+            1998
+          </div>
+          <div id="year2002" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
+            1982
+          </div>
+          <div id="year2006" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
+            2006
+          </div>
+          <div id="year2010" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
+            2010
+          </div>
+          <div id="year2014" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
+            2014
+          </div>
+          <div id="year2018" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
+            2018
+          </div>
+          <div id="year2022" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
+            2022
+          </div>
+        </div>
+
+        <Swiper
+          className={classnames(styles.swiper)}
+          modules={[Pagination, Navigation, Controller, EffectFade]}
+          controller={{ control: controlledSwiper }}
+          navigation={{
+            prevEl: '.prev',
+            nextEl: '.next'
+          }}
+          speed={250}
+          effect="fade"
+          fadeEffect={{ crossFade: true }}
+          onSwiper={(swiper) => setControlledSwiper(swiper)}
+          onSlideChange={(swiper) => handleSlideChange(swiper)}
+        >
+          <div className={classnames(styles.swiperSlideWrapper)}>
+            <SwiperSlide className={classnames(styles.swiperSlide)}>
+              <div className={classnames(styles.swiperBackground)}>
+                {' '}
+                <h1>TELSTAR DURLAST</h1>
+                <Image src={'WCBall/1970_Telstar_H-539.png'} alt={'ball1970'} />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className={classnames(styles.swiperSlide)}>
+              <div className={classnames(styles.swiperSlide)}>
+                {' '}
+                <h1>TELSTAR DURLAST</h1>
+                <Image src={'WCBall/1974_Telstar Durlast_H-51.png'} alt={'ball1974'} />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className={classnames(styles.swiperSlide)}>
+              <Image src={'WCBall/1978_TangoArgentinia_H-419.png'} alt={'ball1970'} />
+            </SwiperSlide>
+            <SwiperSlide className={classnames(styles.swiperSlide)}>
+              <Image src={'WCBall/1982_TangoEspania_H-424.png'} alt={'ball1970'} />
+            </SwiperSlide>
+            <SwiperSlide className={classnames(styles.swiperSlide)}>
+              <Image src={'WCBall/1986_Azteca_H-404.png'} alt={'ball1970'} />
+            </SwiperSlide>
+            <SwiperSlide className={classnames(styles.swiperSlide)}>
+              <Image src={'WCBall/1990_EtruscoUnico_H-392.png'} alt={'ball1970'} />
+            </SwiperSlide>
+            <SwiperSlide className={classnames(styles.swiperSlide)}>
+              <Image src={'WCBall/1994_Questra_H-333.png'} alt={'ball1970'} />
+            </SwiperSlide>
+            <SwiperSlide className={classnames(styles.swiperSlide)}>
+              <Image src={'WCBall/1970_Telstar_H-539.png'} alt={'ball1970'} />
+            </SwiperSlide>
+            <SwiperSlide className={classnames(styles.swiperSlide)}>
+              <Image src={'WCBall/1970_Telstar_H-539.png'} alt={'ball1970'} />
+            </SwiperSlide>
+            <SwiperSlide className={classnames(styles.swiperSlide)}>
+              <Image src={'WCBall/1970_Telstar_H-539.png'} alt={'ball1970'} />
+            </SwiperSlide>
+            <SwiperSlide className={classnames(styles.swiperSlide)}>
+              <Image src={'WCBall/1970_Telstar_H-539.png'} alt={'ball1970'} />
+            </SwiperSlide>
+            <SwiperSlide className={classnames(styles.swiperSlide)}>
+              <Image src={'WCBall/1970_Telstar_H-539.png'} alt={'ball1970'} />
+            </SwiperSlide>
+            <SwiperSlide className={classnames(styles.swiperSlide)}>
+              <Image src={'WCBall/1970_Telstar_H-539.png'} alt={'ball1970'} />
+            </SwiperSlide>
+            <SwiperSlide className={classnames(styles.swiperSlide)}>
+              <Image src={'WCBall/1970_Telstar_H-539.png'} alt={'ball1970'} />
+            </SwiperSlide>
+          </div>
+        </Swiper>
+        <div className={classnames(styles.navWrapper)}>
+          <div className="prev">
+            <SVGArrowLeft />
+          </div>
+          <div className="next">
+            <SVGArrowRight />
+          </div>
+        </div>
       </div>
-      <svg width="289" height="288" viewBox="0 0 350 350">
-        <circle
-          ref={circleRef}
-          id="circle"
-          className={classnames(styles.timelineLoader)}
-          cx="175"
-          cy="175"
-          r="170"
-          stroke="#302F30"
-          fill="none"
-          strokeWidth="1"
-        />
-      </svg>
-      <svg viewBox="0 0 340 340">
-        <circle
-          id="yearCircle"
-          className={classnames(styles.timelineLoader)}
-          cx="170"
-          cy="170"
-          r="190"
-          stroke="#302F30"
-          fill="none"
-          strokeWidth=" 1.19432"
-        />
-      </svg>
-      <SVGtimeMap />
-
-      <SVGCurrentYearDot id="currentYearPoint" className={classnames(styles.currentYearPoint)} />
-
-      <div ref={yearRef}>
-        <div id="year1970" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
-          1970
-        </div>
-        <div id="year1974" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
-          1974
-        </div>
-        <div id="year1978" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
-          1978
-        </div>
-        <div id="year1982" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
-          1982
-        </div>
-        <div id="year1986" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
-          1986
-        </div>
-        <div id="year1990" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
-          1990
-        </div>
-        <div id="year1994" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
-          1994
-        </div>
-        <div id="year1998" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
-          1998
-        </div>
-        <div id="year2002" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
-          1982
-        </div>
-        <div id="year2006" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
-          2006
-        </div>
-        <div id="year2010" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
-          2010
-        </div>
-        <div id="year2014" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
-          2014
-        </div>
-        <div id="year2018" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
-          2018
-        </div>
-        <div id="year2022" className={classnames(styles.timelineYear)} onClick={(e) => handleYearClick(e)}>
-          2022
-        </div>
-      </div>
-
-      <Swiper
-        className={classnames(styles.swiper)}
-        modules={[Pagination, Navigation, Controller]}
-        controller={{ control: controlledSwiper }}
-        navigation={{
-          prevEl: '.prev',
-          nextEl: '.next'
-        }}
-        speed={2500}
-        onSwiper={(swiper) => setControlledSwiper(swiper)}
-        onSlideChange={(swiper) => handleSlideChange(swiper)}
-      >
-        <SwiperSlide className={classnames(styles.swiperSlide)}>firstone</SwiperSlide>
-        <SwiperSlide className={classnames(styles.swiperSlide)}>gello</SwiperSlide>
-        <SwiperSlide className={classnames(styles.swiperSlide)}>dello</SwiperSlide>
-        <SwiperSlide className={classnames(styles.swiperSlide)}>hello</SwiperSlide>
-        <SwiperSlide className={classnames(styles.swiperSlide)}>gello</SwiperSlide>
-        <SwiperSlide className={classnames(styles.swiperSlide)}>dello</SwiperSlide>
-        <SwiperSlide className={classnames(styles.swiperSlide)}>hello</SwiperSlide>
-        <SwiperSlide className={classnames(styles.swiperSlide)}>gello</SwiperSlide>
-        <SwiperSlide className={classnames(styles.swiperSlide)}>dello</SwiperSlide>
-        <SwiperSlide className={classnames(styles.swiperSlide)}>dello</SwiperSlide>
-        <SwiperSlide className={classnames(styles.swiperSlide)}>dello</SwiperSlide>
-        <SwiperSlide className={classnames(styles.swiperSlide)}>hello</SwiperSlide>
-        <SwiperSlide className={classnames(styles.swiperSlide)}>gello</SwiperSlide>
-        <SwiperSlide className={classnames(styles.swiperSlide)}>dello</SwiperSlide>
-      </Swiper>
-      {/* <div className={classnames(styles.prev)}>
-          <SVGArrow />
-        </div>
-        <div className={classnames(styles.next)}>
-          <SVGArrow />
-        </div> */}
     </div>
   );
 }

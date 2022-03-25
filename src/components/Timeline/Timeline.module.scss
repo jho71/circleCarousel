@@ -1,35 +1,43 @@
 @import 'shared';
 
 .Timeline {
-  position: relative;
-  height: 288px;
-  width: 288px;
-  margin: auto;
-  margin-bottom: 200px;
+  height: 100vh;
+  width: 100vw;
+
+  .timelineWrapper {
+    position: relative;
+    height: 288px;
+    width: 288px;
+    margin: auto;
+  }
 
   .next,
   .prev {
-    width: 30px;
-    height: 30px;
   }
-  svg:not(.next, .prev, .timelineDot, .currentYearPoint) {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    margin-left: auto;
-    margin-right: auto;
-    .timelineLoader {
+
+  .carouselWrapper {
+    margin-top: 500px;
+    svg:not(.next, .prev, .timelineDot, .currentYearPoint) {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
       margin-left: auto;
       margin-right: auto;
     }
-  }
 
-  #circle {
-    position: relative;
-    left: 0;
+    #circle {
+      position: relative;
+      left: 0;
+    }
+    .timelineMap {
+      padding-top: 1.6px;
+      width: 319px;
+      height: 319px;
+      position: relative;
+    }
   }
   .currentYearPoint {
     width: px(12);
@@ -52,12 +60,6 @@
     cursor: pointer;
   }
 
-  .timelineMap {
-    padding-top: 1.6px;
-    width: 319px;
-    height: 319px;
-    position: relative;
-  }
   .yearText {
     width: 350px;
     height: 350px;
@@ -68,7 +70,38 @@
     overflow: visible;
   }
   .swiper {
-    margin-top: -100px;
-    width: 280px;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin-left: auto;
+    margin-right: auto;
+
+    .swiperSlide {
+      .swiperBackground {
+        height: 100%;
+        width: 100%;
+        // background-color: aqua;
+      }
+    }
+  }
+  .navWrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    position: absolute;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+    margin-left: auto;
+    margin-right: auto;
+
+    .prev {
+      padding-left: 100px;
+    }
+    .next {
+    }
   }
 }
