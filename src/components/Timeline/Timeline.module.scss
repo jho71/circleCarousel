@@ -5,12 +5,14 @@
   height: 288px;
   width: 288px;
   margin: auto;
+  margin-bottom: 200px;
+
   .next,
   .prev {
-    width: 100% !important;
-    height: 100% !important;
+    width: 30px;
+    height: 30px;
   }
-  svg {
+  svg:not(.next, .prev, .timelineDot, .currentYearPoint) {
     height: 100%;
     width: 100%;
     position: absolute;
@@ -47,6 +49,7 @@
     line-height: 14px;
     text-align: center;
     letter-spacing: 0.04em;
+    cursor: pointer;
   }
 
   .timelineMap {
@@ -63,5 +66,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
     overflow: visible;
+  }
+  .swiper {
+    margin-top: -100px;
+    width: 280px;
   }
 }

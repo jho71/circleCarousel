@@ -37,6 +37,7 @@ function Timeline() {
     MorphSVGPlugin.convertToPath('#yearCircle');
     gsap.to('#circle', { duration: 0, drawSVG: '0%', rotation: -90, transformOrigin: '50% 50%' });
     gsap.to('#yearCircle', { duration: 0, drawSVG: '0%', rotation: -90, transformOrigin: '50% 50%' });
+    gsap.to(yearRef.current!.children[0], 0.25, { scale: 1 });
     gsap.to('#currentYearPoint', {
       duration: 0,
       motionPath: {
@@ -476,34 +477,30 @@ function Timeline() {
     );
   }, []);
 
-  // const handleSlideChange: (swiper: SwiperClass) => void = (swiper: SwiperClass) => {
-  //   let tmpTime = time;
-  //   setActiveIndex(swiper.activeIndex);
+  const handleSlideChange: (swiper: SwiperClass) => void = (swiper: SwiperClass) => {
+    setActiveIndex(swiper.activeIndex);
 
-  //   tmpTime = positionValue[swiper.activeIndex];
-  //   console.log(tmpTime);
-  //   const yearElem = document.getElementsByClassName(styles.timelineYear);
-  //   for (var i = 0, len = yearElem.length; i < len; i++) {
-  //     gsap.to(yearElem[i], 0.25, {
-  //       scale: 0.5
-  //     });
-  //   }
-  //   function yearAnimation(i: number): undefined {
-  //     const waitTime = Math.abs(activeIndex - i) * 0.25;
-  //     gsap.to(yearElem[i], 0.25, {
-  //       scale: 1,
-  //       delay: waitTime
-  //     });
-  //     return undefined;
-  //   }
-  //   //had comment this out to push
-  //   mainTimeline?.tweenTo('point' + swiper.activeIndex, {
-  //     onComplete: yearAnimation(swiper.activeIndex)
-  //   });
+    const yearElem = document.getElementsByClassName(styles.timelineYear);
+    for (var i = 0, len = yearElem.length; i < len; i++) {
+      gsap.to(yearElem[i], 0.25, {
+        scale: 0.5
+      });
+    }
+    function yearAnimation(i: number): undefined {
+      const waitTime = Math.abs(activeIndex - i) * 0.25;
+      gsap.to(yearElem[i], 0.25, {
+        scale: 1,
+        delay: waitTime
+      });
+      return undefined;
+    }
+    //had comment this out to push
+    mainTimeline?.tweenTo('point' + swiper.activeIndex, {
+      onComplete: yearAnimation(swiper.activeIndex)
+    });
 
-  //   setTime(tmpTime);
-  //   console.log('point' + activeIndex);
-  // };
+    console.log('point' + activeIndex);
+  };
 
   function handleYearClick(e: React.MouseEvent<HTMLDivElement>) {
     const element = e.currentTarget as HTMLInputElement;
@@ -661,6 +658,7 @@ function Timeline() {
       </div>
 
       <Swiper
+        className={classnames(styles.swiper)}
         modules={[Pagination, Navigation, Controller]}
         controller={{ control: controlledSwiper }}
         navigation={{
@@ -669,26 +667,27 @@ function Timeline() {
         }}
         speed={2500}
         onSwiper={(swiper) => setControlledSwiper(swiper)}
+        onSlideChange={(swiper) => handleSlideChange(swiper)}
       >
-        <SwiperSlide>firstone</SwiperSlide>
-        <SwiperSlide>gello</SwiperSlide>
-        <SwiperSlide>dello</SwiperSlide>
-        <SwiperSlide>hello</SwiperSlide>
-        <SwiperSlide>gello</SwiperSlide>
-        <SwiperSlide>dello</SwiperSlide>
-        <SwiperSlide>hello</SwiperSlide>
-        <SwiperSlide>gello</SwiperSlide>
-        <SwiperSlide>dello</SwiperSlide>
-        <SwiperSlide>dello</SwiperSlide>
-        <SwiperSlide>dello</SwiperSlide>
-        <SwiperSlide>hello</SwiperSlide>
-        <SwiperSlide>gello</SwiperSlide>
-        <SwiperSlide>dello</SwiperSlide>
+        <SwiperSlide className={classnames(styles.swiperSlide)}>firstone</SwiperSlide>
+        <SwiperSlide className={classnames(styles.swiperSlide)}>gello</SwiperSlide>
+        <SwiperSlide className={classnames(styles.swiperSlide)}>dello</SwiperSlide>
+        <SwiperSlide className={classnames(styles.swiperSlide)}>hello</SwiperSlide>
+        <SwiperSlide className={classnames(styles.swiperSlide)}>gello</SwiperSlide>
+        <SwiperSlide className={classnames(styles.swiperSlide)}>dello</SwiperSlide>
+        <SwiperSlide className={classnames(styles.swiperSlide)}>hello</SwiperSlide>
+        <SwiperSlide className={classnames(styles.swiperSlide)}>gello</SwiperSlide>
+        <SwiperSlide className={classnames(styles.swiperSlide)}>dello</SwiperSlide>
+        <SwiperSlide className={classnames(styles.swiperSlide)}>dello</SwiperSlide>
+        <SwiperSlide className={classnames(styles.swiperSlide)}>dello</SwiperSlide>
+        <SwiperSlide className={classnames(styles.swiperSlide)}>hello</SwiperSlide>
+        <SwiperSlide className={classnames(styles.swiperSlide)}>gello</SwiperSlide>
+        <SwiperSlide className={classnames(styles.swiperSlide)}>dello</SwiperSlide>
       </Swiper>
-      {/* <div className="prev">
+      {/* <div className={classnames(styles.prev)}>
           <SVGArrow />
         </div>
-        <div className="next">
+        <div className={classnames(styles.next)}>
           <SVGArrow />
         </div> */}
     </div>
